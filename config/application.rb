@@ -21,5 +21,16 @@ module Logingr
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    
+    config.api_only = true unless Rails.env.development? # let it off for dev access on /graphql
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3000'
+        resource '*', 
+          :headers => :any, 
+          :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :methods => [:get, :post, :patch, :delete, :options]
+      end
+    end
   end
 end
