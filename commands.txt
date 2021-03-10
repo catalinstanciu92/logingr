@@ -1,0 +1,2 @@
+rails generate devise_token_auth:install User auth
+
