@@ -5,3 +5,6 @@ rails db:drop
 rails db:create
 rails db:migrate
 
+$ curl http://localhost:3000/auth/sign_in --data "email=cs@test.com&password=testtest123"
+{"data":{"id":1,"email":"cs@test.com","provider":"email","uid":"cs@test.com","allow_password_change":false,"name":null,"nickname":null,"image":null,"activation_digest":null,"activated":true,"activated_at":"2021-03-10T09:00:16.178Z"}}%
+
