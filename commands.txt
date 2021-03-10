@@ -1,2 +1,7 @@
 rails generate devise_token_auth:install User auth
 
+//remove old migration for users
+rails db:drop
+rails db:create
+rails db:migrate
+
