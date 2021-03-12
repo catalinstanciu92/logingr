@@ -25,7 +25,7 @@ module Logingr
     config.api_only = true unless Rails.env.development? # let it off for dev access on /graphql
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3001'
+        origins 'http://localhost:3002'
         resource '*', 
           :headers => :any, 
           :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],

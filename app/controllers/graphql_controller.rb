@@ -3,8 +3,8 @@ class GraphqlController < ApplicationController
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
   # protect_from_forgery with: :null_session
-  before_action :authenticate_user!
-  include DeviseTokenAuth::Concerns::SetUserByToken
+  #before_action :authenticate_user!
+  # include DeviseTokenAuth::Concerns::SetUserByToken
 
   def execute
     variables = prepare_variables(params[:variables])
@@ -14,7 +14,7 @@ class GraphqlController < ApplicationController
       # Query context goes here, for example:
       # current_user: current_user,
     }
-    result = LogingrSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = LogingrSchema.execute(query, variables: variables, context: graphql_context(:user), operation_name: operation_name)
     render json: result
   rescue => e
     raise e unless Rails.env.development?
